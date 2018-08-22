@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  res.status(200).json({
+  res.status(201).json({
     message: 'POST request to /products'
   });
 });
