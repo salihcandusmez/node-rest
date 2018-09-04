@@ -5,7 +5,7 @@ const Order = require('../models/order');
 const Product = require('../models/product');
 
 router.get('/', (req, res, next) => {
-  Order.find().select('product quantity _id').exec().then(docs => {
+  Order.find().select('product quantity _id').populate('product', 'name').exec().then(docs => {
     res.status(200).json({
       counst: docs.length,
       orders: docs.map(doc => {
@@ -61,7 +61,7 @@ router.post('/', (req, res, next) => {
 });
 
 router.get('/:id', (req, res, next) => {
-  Order.findById(req.params.id).exec().then(order => {
+  Order.findById(req.params.id).populate('product', 'name price').exec().then(order => {
     if (!order) {
       return res.status(404).json({
         message: 'Order not found'
