@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
+const userRoutes = require('./api/routes/user');
 
 mongoose.connect(
   'mongodb+srv://node-rest:' + process.env.MONGO_ATLAS_PW + '@node-rest-5efue.mongodb.net/test?retryWrites=true', { useNewUrlParser: true }
@@ -32,6 +33,7 @@ app.use((req, res, next) => {
 
 app.use('/products', productRoutes);
 app.use('/orders', orderRoutes);
+app.use('/user', userRoutes);
 
 app.use((req, res, next) => {
   const error = new Error('Not found');
